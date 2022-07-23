@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SpellingAppV2Theme {
                 // A surface container using the 'background' color from the theme
-
+                MyApp()
             }
         }
     }
