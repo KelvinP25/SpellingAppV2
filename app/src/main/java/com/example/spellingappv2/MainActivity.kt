@@ -20,6 +20,7 @@ import com.example.spellingappv2.ui.Palabra.WordRegister
 import com.example.spellingappv2.ui.Score.ScoreScreen
 import com.example.spellingappv2.ui.SplashScreen.SplashScreen
 import com.example.spellingappv2.ui.Usuario.RegistroUsuarioScreen
+import com.example.spellingappv2.ui.practica.PracticaScreen
 import com.example.spellingappv2.ui.theme.SpellingAppV2Theme
 import com.example.spellingappv2.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,6 +70,9 @@ fun MyApp() {
             composable(Screen.MainKidsScreen.route + "/{userId}") { navBackStack ->
                 val user = navBackStack.arguments?.getString("userId")
                 MainKidsScreen(navHostController,usuarioId = user?.toInt())
+            }
+            composable(Screen.PracticaScreen.route){
+                PracticaScreen(navHostController)
             }
         }
     }

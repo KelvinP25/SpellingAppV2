@@ -8,4 +8,5 @@ sealed class Screen (val route :String){
     object WordQuery: Screen("NavegarConsulta")
     object ScoreScreen : Screen("DashboardKid")
     object MainKidsScreen : Screen("KidsMain")
+    object PracticaScreen : Screen("Practica")
 }

@@ -74,7 +74,7 @@ fun MainKidsScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ }
+                onClick = { navHostController.navigate(Screen.PracticaScreen.route) }
             ) {
                 Text(
                     text = "Start",
