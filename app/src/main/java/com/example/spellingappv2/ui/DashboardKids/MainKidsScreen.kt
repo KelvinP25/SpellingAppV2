@@ -51,6 +51,10 @@ fun MainKidsScreen(
                     Button(
                         onClick = { navHostController.navigate(Screen.WordQuery.route) }
                     )
+                        /*colors = ButtonDefaults.buttonColors(
+                            backgroundColor = Blue1,
+                            contentColor = MaterialTheme.colors.onPrimary
+                        )*/ //TODO: Cambiar color al boton
                     {
                         Text(
                             text = "Words"
@@ -68,6 +72,7 @@ fun MainKidsScreen(
                 backgroundColor = Blue1,
             )
         },
+        //TODO: Agregar FloatingActionButton
     ){
         Column(
             modifier = Modifier

@@ -9,10 +9,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
 import com.example.spellingappv2.model.Palabra
 
 @Composable
@@ -30,20 +34,24 @@ fun RowPalabra(
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 8.dp)
             .clickable { onClick(palabra) }
-            .size(width = 30.dp, height = 30.dp),
+            .size(width = 30.dp, height = 80.dp),
         elevation = 4.dp,
         shape = RoundedCornerShape(2.dp),
 
         )
     {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .padding(4.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(
-                text = palabra.palabra,
-                style = MaterialTheme.typography.h6,
-                fontWeight = FontWeight.Bold
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(palabra.imagenUrl)
+                    .transformations(CircleCropTransformation())
+                    .build(),
+                contentDescription = null
             )
             Text(
                 text = palabra.descripcion,
@@ -52,6 +60,17 @@ fun RowPalabra(
                 textAlign = TextAlign.End,
                 color = Color.Black
             )
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Text(
+                text = palabra.palabra,
+                style = MaterialTheme.typography.h6,
+                fontWeight = FontWeight.Bold
+            )
+
         }
 
 

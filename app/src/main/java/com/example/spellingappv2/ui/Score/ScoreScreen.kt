@@ -51,7 +51,7 @@ fun ScoreScreen(
         Spacer(modifier = Modifier.padding(top = 20.dp))
         Image(
             //AQui va el logo de la app que como no lo tengo puse la abeja
-            painter = painterResource(id =R.drawable.abeja),
+            painter = painterResource(id =R.drawable.pngegg),
             contentDescription = "Spelling App",
             modifier = Modifier.size(width = 200.dp, height = 200.dp)
         )
