@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.spellingappv2.model.Palabra
+import com.example.spellingappv2.ui.componentes.RowPalabra
 import com.example.spellingappv2.ui.theme.Blue1
 import com.example.spellingappv2.util.Screen
 
@@ -31,7 +32,7 @@ fun WordQuery(
             TopAppBar(
                 title = {
                     Text(
-                        text = "WORDS",
+                        text = "Words",
                         fontFamily = FontFamily.Cursive,
                         fontWeight = FontWeight.Bold
                     )
@@ -59,19 +60,13 @@ fun WordQuery(
             val lis = viewModel.listado.collectAsState(initial = emptyList()).value
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 items(lis) { words ->
-                    RowP(words)
+                    RowPalabra(
+                        words,
+                        onClick = {}
+                    )
                 }
             }
         }
     }
 }
 
-@Composable
-fun RowP(palabra: Palabra) {
-    Column(modifier = Modifier.padding(8.dp)) {
-        Text(text = "Word: ${palabra.palabra}")
-        Text(text = "Description: ${palabra.descripcion}")
-        Text(text = "Image Url: ${palabra.imagenUrl}")
-
-    }
-}

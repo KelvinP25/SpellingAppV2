@@ -50,7 +50,7 @@ fun MainScreen(navHostController: NavHostController) {
         )
         Spacer(modifier = Modifier.padding(top = 20.dp))
         Image(
-            painter = painterResource(id = R.drawable.abeja),
+            painter = painterResource(id = R.drawable.pngegg),
             contentDescription = "Spelling App",
             modifier = Modifier.size(width = 200.dp, height = 200.dp)
         )

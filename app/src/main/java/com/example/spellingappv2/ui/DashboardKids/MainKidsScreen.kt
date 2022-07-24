@@ -48,14 +48,22 @@ fun MainKidsScreen(
 
                 },
                 actions = {
-                    IconButton(onClick = { navHostController.navigate(Screen.WordQuery.route) }) {
+                    Button(
+                        onClick = { navHostController.navigate(Screen.WordQuery.route) }
+                    )
+                    {
+                        Text(
+                            text = "Words"
+                        )
+                    }
+                    /*IconButton(onClick = { navHostController.navigate(Screen.WordQuery.route) }) {
                         Icon(
                             imageVector = Icons.Default.Add,
                             contentDescription = "Words",
                             tint = MaterialTheme.colors.onPrimary
 
                         )
-                    }
+                    }*/
                 },
                 backgroundColor = Blue1,
             )
@@ -70,7 +78,7 @@ fun MainKidsScreen(
             Spacer(modifier = Modifier.padding(top = 20.dp))
             Image(
                 ///Aqui va el logo de la qpp
-                painter = painterResource(id = R.drawable.abeja),
+                painter = painterResource(id = R.drawable.pngegg),
                 contentDescription = "Spelling App",
                 modifier = Modifier.size(width = 200.dp, height = 200.dp)
             )
@@ -86,7 +94,7 @@ fun MainKidsScreen(
                     .fillMaxWidth()
                     .absolutePadding(right = 6.dp, left = 6.dp, bottom = 8.dp),
                 backgroundColor = Color.Transparent,
-                shape = CutCornerShape(6.dp)
+                shape = CutCornerShape(10.dp)
             )
             {
                 Column(
