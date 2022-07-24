@@ -49,12 +49,12 @@ fun MainKidsScreen(
                 },
                 actions = {
                     Button(
-                        onClick = { navHostController.navigate(Screen.WordQuery.route) }
-                    )
-                        /*colors = ButtonDefaults.buttonColors(
+                        onClick = { navHostController.navigate(Screen.WordQuery.route) },
+                        colors = ButtonDefaults.buttonColors(
                             backgroundColor = Blue1,
                             contentColor = MaterialTheme.colors.onPrimary
-                        )*/ //TODO: Cambiar color al boton
+                        )
+                    )
                     {
                         Text(
                             text = "Words"
@@ -72,7 +72,18 @@ fun MainKidsScreen(
                 backgroundColor = Blue1,
             )
         },
-        //TODO: Agregar FloatingActionButton
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { /*TODO*/ }
+            ) {
+                Text(
+                    text = "Start",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontFamily = FontFamily.Cursive
+                )
+            }
+        }
     ){
         Column(
             modifier = Modifier
@@ -90,7 +101,7 @@ fun MainKidsScreen(
             Spacer(modifier = Modifier.padding(top = 15.dp))
             Text(
                 text = "Great you came back.",
-                fontSize = 35.sp,
+                fontSize = 29.sp,
                 fontWeight = FontWeight.ExtraBold,
                 fontFamily = FontFamily.Cursive
             )
@@ -118,7 +129,7 @@ fun MainKidsScreen(
                     //en este text se mostrara el nombre del usuario que el elige
                     Text(
                         text = usuario.nombres,
-                        fontSize = 20.sp,
+                        fontSize = 50.sp,
                         style = MaterialTheme.typography.h6,
                         fontWeight = FontWeight.Bold,
                         fontFamily = FontFamily.Cursive
