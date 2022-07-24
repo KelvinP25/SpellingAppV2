@@ -29,6 +29,7 @@ object AppModule {
             SpellingDb::class.java,
             DATABASE_NAME)
             .fallbackToDestructiveMigration()
+            .createFromAsset("databases/SpellingDb.db")
             .build()
     }
 
