@@ -71,9 +71,13 @@ fun MyApp() {
                 val user = navBackStack.arguments?.getString("userId")
                 MainKidsScreen(navHostController,usuarioId = user?.toInt())
             }
-            composable(Screen.PracticaScreen.route){
-                PracticaScreen(navHostController)
+            composable(Screen.PracticaScreen.route + "/{palabraId}") { navBackStack ->
+                val palabra = navBackStack.arguments?.getString("palabraId")
+                PracticaScreen(navHostController,palabraId = palabra?.toInt())
             }
+            /*composable(Screen.PracticaScreen.route){
+                PracticaScreen(navHostController)
+            }*/
         }
     }
 }

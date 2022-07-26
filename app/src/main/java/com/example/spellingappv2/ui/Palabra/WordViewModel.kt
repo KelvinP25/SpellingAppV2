@@ -18,12 +18,18 @@ import javax.inject.Inject
 class WordViewModel @Inject constructor(
     val palabraRepository: PalabraRepository
 ): ViewModel() {
+    var palabra by mutableStateOf(Palabra(0,"","",""))
     var word by mutableStateOf("")
     var description by mutableStateOf("")
     var imageUrl by mutableStateOf("")
 
     var listado = palabraRepository.getList()
         private set
+
+
+
+    /*var palabrasListado = palabraRepository.getList()
+        private set*/
 
     private var _state = mutableStateOf(SpellListState())
     val state: State<SpellListState> = _state
@@ -54,13 +60,12 @@ class WordViewModel @Inject constructor(
         }
     }
 
-    fun GetPalabra (Id : Int = 0, palabras :  List<Palabra>) : Palabra{
-        var index = Id
-        if (!palabras.isEmpty()){
-            if (index != 0){
-                index += 1
+    fun GetPalabra (Id : Int = 0) : Palabra{
+        viewModelScope.launch {
+            palabraRepository.buscar(Id).collect { response ->
+                palabra = response
             }
         }
-        return palabras[index]
+        return palabra
     }
 }
