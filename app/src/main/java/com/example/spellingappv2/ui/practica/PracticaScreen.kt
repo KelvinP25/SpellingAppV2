@@ -1,5 +1,6 @@
 package com.example.spellingappv2.ui.practica
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -18,6 +19,7 @@ import com.example.spellingappv2.model.Palabra
 import com.example.spellingappv2.ui.Palabra.WordViewModel
 import com.example.spellingappv2.ui.theme.Yellow1
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun PracticaScreen(
     navHostController : NavHostController,
@@ -67,7 +69,7 @@ fun PracticaScreen(
             }
         }
         
-        Row() {
+        Row(modifier = Modifier) {
             Text(text = palabra.descripcion)
             Spacer(modifier = Modifier.height(3.dp))
             Text(text = palabra.palabra)
