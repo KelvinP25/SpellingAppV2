@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowLeft
+import androidx.compose.material.icons.filled.ArrowRight
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Speaker
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -42,21 +44,19 @@ fun PracticaScreen(
             }
         }
     ) {
-        Column(){
-            /*val lis = viewModel.listado.collectAsState(initial = emptyList()).value
-
-            var palabra = viewModel.GetPalabra(palabras = lis)
-
-            var index : Int = 0*/
+        Column(
+            modifier = Modifier.fillMaxWidth()
+        ){
             Row(modifier = Modifier
-                .size(height = 80.dp, width=80.dp),
+                .size(height = 200.dp, width=100.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(palabra.imagenUrl)
                         .build(),
-                    contentDescription = null
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
 
@@ -71,20 +71,30 @@ fun PracticaScreen(
                     //palabra = viewModel.GetPalabra(p)
                     /*index += 1*/
                 ) {
-                    Icon(imageVector = Icons.Default.ArrowLeft, contentDescription = "")
+                    Icon(imageVector = Icons.Default.ArrowRight, contentDescription = "")
                 }
             }
 
             Row(modifier = Modifier) {
+                IconButton(
+                    onClick = { /*TODO*/ }
+                ) {
+                    //ICON DE SONIDO (PREFERIBLEMENTE, UNA VOCINA)
+                    Icon(imageVector = Icons.Default.Speaker, contentDescription = "")
+                }
+                Text(text = palabra.palabra)
                 Text(text = palabra.descripcion)
                 Spacer(modifier = Modifier.height(3.dp))
-                Text(text = palabra.palabra)
+
             }
-
         }
-        //TODO: Palabras llega vacio, pero en WordQuery siendo la misma linea se llena :)
 
 
+            /*val lis = viewModel.listado.collectAsState(initial = emptyList()).value
+
+            var palabra = viewModel.GetPalabra(palabras = lis)
+
+            var index : Int = 0*/
 
     }
 }
