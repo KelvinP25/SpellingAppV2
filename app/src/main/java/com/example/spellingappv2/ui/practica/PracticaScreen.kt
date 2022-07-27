@@ -4,21 +4,20 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowLeft
 import androidx.compose.material.icons.filled.ArrowRight
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Speaker
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.spellingappv2.model.Palabra
 import com.example.spellingappv2.ui.Palabra.WordViewModel
+import com.example.spellingappv2.ui.speech.SpeechViewModel
 import com.example.spellingappv2.ui.theme.Yellow1
 import com.example.spellingappv2.util.Screen
 
@@ -27,10 +26,13 @@ import com.example.spellingappv2.util.Screen
 fun PracticaScreen(
     navHostController: NavHostController,
     viewModel: WordViewModel = hiltViewModel(),
-    palabraId : Int? = 0
+    palabraId : Int? = 0,
+    //speech : SpeechViewModel = hiltViewModel()
 ) {
     var palabra = viewModel.GetPalabra(palabraId?:0)
+    val context = LocalContext.current
 
+    //var speech : SpeechViewModel
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -77,14 +79,16 @@ fun PracticaScreen(
 
             Row(modifier = Modifier) {
                 IconButton(
-                    onClick = { /*TODO*/ }
+                    onClick = { //speech.textToSpeech(context, palabra.palabra)
+                         }
                 ) {
                     //ICON DE SONIDO (PREFERIBLEMENTE, UNA VOCINA)
                     Icon(imageVector = Icons.Default.Speaker, contentDescription = "")
                 }
                 Text(text = palabra.palabra)
-                Text(text = palabra.descripcion)
                 Spacer(modifier = Modifier.height(3.dp))
+                Text(text = palabra.descripcion)
+
 
             }
         }
@@ -98,4 +102,5 @@ fun PracticaScreen(
 
     }
 }
+
 
