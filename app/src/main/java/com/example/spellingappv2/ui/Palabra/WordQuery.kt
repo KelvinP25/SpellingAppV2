@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
@@ -15,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.spellingappv2.model.Palabra
@@ -34,7 +36,9 @@ fun WordQuery(
                     Text(
                         text = "Words",
                         fontFamily = FontFamily.Cursive,
-                        fontWeight = FontWeight.Bold
+                        fontSize = 35.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.White
                     )
                 },
                 backgroundColor = Blue1,
@@ -42,12 +46,14 @@ fun WordQuery(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navHostController.navigate(Screen.WordRegister.route)},
-                contentColor = contentColorFor(backgroundColor = Blue1)
+                onClick = { navHostController.navigate(Screen.WordRegister.route) },
+                contentColor = contentColorFor(backgroundColor = Blue1),
+                backgroundColor = Blue1,
             )
             {
-                Icon(imageVector = Icons.Default.Add, contentDescription = null, tint =  Color.Black)
+                Icon(imageVector = Icons.Default.Add, contentDescription = null, tint = Color.White)
             }
+
         },
     ) {
 
