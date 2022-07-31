@@ -30,19 +30,20 @@ import com.example.spellingappv2.util.Screen
 @Composable
 fun MainKidsScreen(
     navHostController: NavHostController,
-    viewModel : UsuarioViewModel = hiltViewModel(),
-    usuarioId : Int?
-){
+    viewModel: UsuarioViewModel = hiltViewModel(),
+    usuarioId: Int?
+) {
     //intentando recuperar el usuario
-    val usuario = viewModel.Buscar(usuarioId?:0)
+    val usuario = viewModel.Buscar(usuarioId ?: 0)
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
                         text = "Dashboard",
-                        fontFamily = FontFamily.Default,
-                        fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily.Cursive,
+                        fontSize = 35.sp,
+                        fontWeight = FontWeight.ExtraBold,
                         color = MaterialTheme.colors.onPrimary
                     )
 
@@ -57,7 +58,9 @@ fun MainKidsScreen(
                     )
                     {
                         Text(
-                            text = "Words"
+                            text = "Words",
+                            fontFamily = FontFamily.Cursive,
+                            fontWeight = FontWeight.ExtraBold
                         )
                     }
                     /*IconButton(onClick = { navHostController.navigate(Screen.WordQuery.route) }) {
@@ -84,7 +87,7 @@ fun MainKidsScreen(
                 )
             }
         }
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
