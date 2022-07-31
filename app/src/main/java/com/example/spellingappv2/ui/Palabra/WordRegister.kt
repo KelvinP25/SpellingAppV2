@@ -11,13 +11,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.spellingappv2.ui.componentes.ValidationText
 import com.example.spellingappv2.ui.theme.Blue1
 import com.example.spellingappv2.util.Screen
 
@@ -28,7 +31,12 @@ fun WordRegister(
 ) {
 
     val scaffoldState = rememberScaffoldState()
-
+    var wordError by remember {
+        mutableStateOf(false)
+    }
+    var descriptionError by remember {
+        mutableStateOf(false)
+    }
     var validar = LocalContext.current
     val focusRequesterWord = FocusRequester()
     val focusRequesterDescription = FocusRequester()
@@ -44,20 +52,25 @@ fun WordRegister(
             TopAppBar(
                 title = {
                     Text(
-                        text = "WORDS REGISTER",
+                        text = "Words Register",
                         fontFamily = FontFamily.Cursive,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 35.sp,
+                        color = Color.White
                     )
 
                 },
                 backgroundColor = Blue1,
                 navigationIcon = {
-                    IconButton(onClick = {
-                        navHostController.navigate(Screen.WordQuery.route)
-                    }) {
+                    IconButton(
+                        onClick = {
+                            navHostController.navigate(Screen.WordQuery.route)
+                        }
+                    ) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "CONSULTA",
+                            tint = Color.White
                         )
                     }
                 }
@@ -77,14 +90,14 @@ fun WordRegister(
                 label = {
                     Text(
                         text = "Word",
-                        fontStyle = FontStyle.Italic
+                        fontStyle = FontStyle.Italic,
+                        fontFamily = FontFamily.Cursive,
                     )
                 },
                 onValueChange = {
                     viewModel.word = it
-                    error = false
                 },
-                isError = error,
+                isError = wordError,
                 modifier = Modifier
                     .fillMaxWidth()
                     .focusRequester(focusRequesterWord),
@@ -95,37 +108,21 @@ fun WordRegister(
                     )
                 }
             )
-
-            val assistiveElementText = if (error)
-                "Error: Obligatorio" else "*Obligatorio"
-            val assistiveElementColor = if (error) {
-                MaterialTheme.colors.error
-            } else {
-                MaterialTheme.colors
-                    .onSurface
-                    .copy(alpha = ContentAlpha.medium)
-            }
-
-            Text(
-                text = assistiveElementText,
-                color = assistiveElementColor,
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(start = 16.dp)
-            )
+            ValidationText(estado = wordError)
 
             OutlinedTextField(
                 value = viewModel.description,
                 label = {
                     Text(
                         text = "Description",
-                        fontStyle = FontStyle.Italic
+                        fontStyle = FontStyle.Italic,
+                        fontFamily = FontFamily.Cursive,
                     )
                 },
                 onValueChange = {
                     viewModel.description = it
-                    error = false
                 },
-                isError = error,
+                isError = descriptionError,
                 modifier = Modifier
                     .fillMaxWidth()
                     .focusRequester(focusRequesterDescription),
@@ -136,33 +133,16 @@ fun WordRegister(
                     )
                 }
             )
+            ValidationText(estado = descriptionError)
 
-            val Text = if (error)
-                "Error: Obligatorio" else "*Obligatorio"
-            val Color = if (error) {
-                MaterialTheme
-                    .colors
-                    .error
-            } else {
-                MaterialTheme
-                    .colors
-                    .onSurface
-                    .copy(alpha = ContentAlpha.medium)
-            }
-
-            Text(
-                text = Text,
-                color = Color,
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(start = 16.dp)
-            )
 
             OutlinedTextField(
                 value = viewModel.imageUrl,
                 label = {
                     Text(
                         text = "Image Url",
-                        fontStyle = FontStyle.Italic
+                        fontStyle = FontStyle.Italic,
+                        fontFamily = FontFamily.Cursive,
                     )
                 },
                 onValueChange = {
@@ -228,7 +208,12 @@ fun WordRegister(
                     contentDescription = null,
                     modifier = Modifier.size(ButtonDefaults.IconSize)
                 )
-                Text("  SAVE")
+                Text(
+                    text = " Save",
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily.Cursive,
+                    fontWeight = FontWeight.ExtraBold
+                )
             }
         }
     }
