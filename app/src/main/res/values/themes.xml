@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.SpellingAppV2" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/blue1</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
 </resources>
