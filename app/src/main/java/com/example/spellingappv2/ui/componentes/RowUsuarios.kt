@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -17,8 +18,8 @@ import com.example.spellingappv2.model.Usuario
 
 @Composable
 fun RowUsuarios(
-    usuario : Usuario,
-    onClick : (Usuario) -> Unit
+    usuario: Usuario,
+    onClick: (Usuario) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -38,7 +39,8 @@ fun RowUsuarios(
             Text(
                 text = usuario.nombres,
                 style = MaterialTheme.typography.h6,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Cursive
             )
             Text(
                 text = usuario.edad.toString() + " " + "años",
