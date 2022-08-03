@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -108,7 +109,8 @@ fun RegistroUsuarioScreen(
                 isError = nameError,
                 keyboardOptions = KeyboardOptions(
                     capitalization = KeyboardCapitalization.Words,
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Next
                 )
             )
             ValidationText(estado = nameError)
@@ -131,7 +133,8 @@ fun RegistroUsuarioScreen(
                 isError = ageError,
                 keyboardOptions = KeyboardOptions(
                     capitalization = KeyboardCapitalization.None,
-                    keyboardType = KeyboardType.Number
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Next
                 )
             )
 

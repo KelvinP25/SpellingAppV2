@@ -18,6 +18,7 @@ import com.example.spellingappv2.ui.DashboardKids.MainKidsScreen
 import com.example.spellingappv2.ui.MainScreen.MainScreen
 import com.example.spellingappv2.ui.Palabra.WordQuery
 import com.example.spellingappv2.ui.Palabra.WordRegister
+import com.example.spellingappv2.ui.Resumen.ResumenScreen
 import com.example.spellingappv2.ui.Score.ScoreScreen
 import com.example.spellingappv2.ui.SplashScreen.SplashScreen
 import com.example.spellingappv2.ui.Usuario.RegistroUsuarioScreen
@@ -88,6 +89,9 @@ class MainActivity : ComponentActivity() {
                         /*composable(Screen.PracticaScreen.route){
                             PracticaScreen(navHostController)
                         }*/
+                        composable(Screen.ResumenScreen.route) {
+                            ResumenScreen(navHostController)
+                        }
                     }
                 }
             }

@@ -9,4 +9,5 @@ sealed class Screen (val route :String){
     object ScoreScreen : Screen("DashboardKid")
     object MainKidsScreen : Screen("KidsMain")
     object PracticaScreen : Screen("Practica")
+    object ResumenScreen : Screen("ResumenScreen")
 }
