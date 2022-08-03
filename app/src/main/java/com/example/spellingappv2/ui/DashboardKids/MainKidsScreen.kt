@@ -22,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.spellingappv2.R
 import com.example.spellingappv2.ui.Usuario.UsuarioViewModel
+import com.example.spellingappv2.ui.practica.PracticaViewModel
 import com.example.spellingappv2.ui.theme.Blue1
 import com.example.spellingappv2.ui.theme.Teal200
 import com.example.spellingappv2.util.Screen
@@ -31,7 +32,8 @@ import com.example.spellingappv2.util.Screen
 fun MainKidsScreen(
     navHostController: NavHostController,
     viewModel: UsuarioViewModel = hiltViewModel(),
-    usuarioId: Int?
+    usuarioId: Int?,
+    viewModelPractica : PracticaViewModel = hiltViewModel()
 ) {
     //intentando recuperar el usuario
     val usuario = viewModel.Buscar(usuarioId ?: 0)
@@ -77,7 +79,10 @@ fun MainKidsScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navHostController.navigate(Screen.PracticaScreen.route + "/${1}") }
+                onClick = {
+                    viewModelPractica.Guardar(usuario.usuarioId)
+                    navHostController.navigate(Screen.PracticaScreen.route + "/${1}")
+                }
             ) {
                 Text(
                     text = "Start",
