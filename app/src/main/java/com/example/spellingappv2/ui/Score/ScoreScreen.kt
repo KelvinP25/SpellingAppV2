@@ -8,6 +8,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -52,6 +54,18 @@ fun ScoreScreen(
                 },
                 backgroundColor = Blue1,
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { navHostController.navigate(Screen.RegistroUsuarioScreen.route) },
+                contentColor = contentColorFor(backgroundColor = Yellow1)
+            ){
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "",
+                    tint = MaterialTheme.colors.onPrimary
+                )
+            }
         }
 
     ) {
