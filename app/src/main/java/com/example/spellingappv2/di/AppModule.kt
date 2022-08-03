@@ -5,8 +5,10 @@ import androidx.room.Room
 import com.example.spellingappv2.data.SpellingDb
 import com.example.spellingappv2.data.dao.PalabraDao
 import com.example.spellingappv2.data.dao.PracticaDao
+import com.example.spellingappv2.data.dao.PracticaDetalleDao
 import com.example.spellingappv2.data.dao.UsuarioDao
 import com.example.spellingappv2.data.repositorios.PalabraRepository
+import com.example.spellingappv2.data.repositorios.PracticaDetalleRepository
 import com.example.spellingappv2.data.repositorios.PracticaRepository
 import com.example.spellingappv2.data.repositorios.UsuarioRepository
 import dagger.Module
@@ -61,5 +63,13 @@ object AppModule {
     @Provides
     fun ProvidePracticaRepository(practicaDao: PracticaDao) : PracticaRepository{
         return PracticaRepository(practicaDao = practicaDao)
+    }
+    @Provides
+    fun ProvidePracticaDetalleDao(spellingDb: SpellingDb) : PracticaDetalleDao {
+        return spellingDb.detalleDao
+    }
+    @Provides
+    fun ProvidePracticaDetalleRepository(detalleDao: PracticaDetalleDao) : PracticaDetalleRepository {
+        return PracticaDetalleRepository(detalleDao = detalleDao)
     }
 }
