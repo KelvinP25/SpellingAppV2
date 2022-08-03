@@ -26,6 +26,7 @@ fun PracticaScreen(
     navHostController: NavHostController,
     viewModel: WordViewModel = hiltViewModel(),
     palabraId: Int? = 0,
+    onSpeech:(String) -> Unit
     //speech : SpeechViewModel = hiltViewModel()
 ) {
     var palabra = viewModel.GetPalabra(palabraId ?: 0)
@@ -94,7 +95,7 @@ fun PracticaScreen(
                 )
                 Spacer(modifier = Modifier.height(0.dp))
                 IconButton(
-                    onClick = { //speech.textToSpeech(context, palabra.palabra)
+                    onClick = { onSpeech(palabra.palabra)
                     }
                 ) {
                     //ICON DE SONIDO (PREFERIBLEMENTE, UNA VOCINA)

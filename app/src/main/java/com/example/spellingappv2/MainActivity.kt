@@ -1,6 +1,7 @@
 package com.example.spellingappv2
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,15 +25,71 @@ import com.example.spellingappv2.ui.practica.PracticaScreen
 import com.example.spellingappv2.ui.theme.SpellingAppV2Theme
 import com.example.spellingappv2.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val textToSpeechEngine : TextToSpeech by lazy{
+        TextToSpeech(this){ status ->
+            if(status == TextToSpeech.SUCCESS){
+                textToSpeechEngine.language = Locale.US
+                textToSpeechEngine.setSpeechRate(0.50f)
+            }
+        }
+    }
+
+    private fun speak(text : String){
+        textToSpeechEngine.speak(text, TextToSpeech.QUEUE_ADD,null,null)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SpellingAppV2Theme {
                 // A surface container using the 'background' color from the theme
-                MyApp()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    val navHostController = rememberNavController()
+                    NavHost(
+                        navController = navHostController,
+                        startDestination = Screen.SplashScreen.route
+                    ) {
+                        composable(Screen.SplashScreen.route) {
+                            SplashScreen(navHostController)
+                        }
+                        composable(Screen.MainScreen.route) {
+                            MainScreen(navHostController)
+                        }
+                        composable(Screen.RegistroUsuarioScreen.route) {
+                            RegistroUsuarioScreen(navHostController)
+                        }
+                        composable(Screen.WordQuery.route) {
+                            WordQuery(navHostController)
+                        }
+                        composable(Screen.WordRegister.route) {
+                            WordRegister(navHostController)
+                        }
+                        composable(Screen.ScoreScreen.route){
+                            ScoreScreen(navHostController)
+                        }
+                        composable(Screen.MainKidsScreen.route + "/{userId}") { navBackStack ->
+                            val user = navBackStack.arguments?.getString("userId")
+                            MainKidsScreen(navHostController,usuarioId = user?.toInt())
+                        }
+                        composable(Screen.PracticaScreen.route + "/{palabraId}") { navBackStack ->
+                            val palabra = navBackStack.arguments?.getString("palabraId")
+                            PracticaScreen(
+                                onSpeech = {speak(it)},
+                                navHostController = navHostController, palabraId = palabra?.toInt()
+                            )
+                        }
+                        /*composable(Screen.PracticaScreen.route){
+                            PracticaScreen(navHostController)
+                        }*/
+                    }
+                }
             }
         }
     }
@@ -40,7 +97,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyApp() {
-    Surface(
+    /*Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
@@ -73,11 +130,16 @@ fun MyApp() {
             }
             composable(Screen.PracticaScreen.route + "/{palabraId}") { navBackStack ->
                 val palabra = navBackStack.arguments?.getString("palabraId")
-                PracticaScreen(navHostController,palabraId = palabra?.toInt())
+                PracticaScreen(
+                    onSpeech = {speak(it)},
+                    onClick ={
+                        navHostController,palabraId = palabra?.toInt()
+                    }
+                )
             }
-            /*composable(Screen.PracticaScreen.route){
+            *//*composable(Screen.PracticaScreen.route){
                 PracticaScreen(navHostController)
-            }*/
+            }*//*
         }
-    }
+    }*/
 }
