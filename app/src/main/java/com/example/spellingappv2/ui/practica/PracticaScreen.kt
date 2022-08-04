@@ -47,7 +47,8 @@ fun PracticaScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { show = true },
-                contentColor = contentColorFor(backgroundColor = Blue1)
+                //contentColor = contentColorFor(backgroundColor = Blue1)
+                backgroundColor = Blue1
             ) {
                 Icon(
                     imageVector = Icons.Default.CheckCircle,

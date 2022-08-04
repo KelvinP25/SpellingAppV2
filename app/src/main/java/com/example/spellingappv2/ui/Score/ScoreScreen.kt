@@ -58,7 +58,8 @@ fun ScoreScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navHostController.navigate(Screen.RegistroUsuarioScreen.route) },
-                contentColor = contentColorFor(backgroundColor = Yellow1)
+                //contentColor = contentColorFor(backgroundColor = Yellow1),
+                backgroundColor = Blue1
             ){
                 Icon(
                     imageVector = Icons.Default.Add,

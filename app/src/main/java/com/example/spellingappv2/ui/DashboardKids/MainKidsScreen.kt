@@ -82,7 +82,8 @@ fun MainKidsScreen(
                 onClick = {
                     viewModelPractica.Guardar(usuario.usuarioId)
                     navHostController.navigate(Screen.PracticaScreen.route + "/${1}")
-                }
+                },
+                backgroundColor = Blue1
             ) {
                 Text(
                     text = "Start",
